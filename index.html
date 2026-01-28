@@ -139,8 +139,8 @@
     <p class="text-xs text-gray-500">© 2024 MementoPH. All rights reserved.</p>
    </footer><!-- Product Detail Modal -->
    <div id="product-modal" class="hidden fixed inset-0 z-50 flex items-end md:items-center justify-center p-4">
-    <div class="modal-backdrop absolute inset-0" onclick="closeModal()"></div>
-    <div class="relative bg-white rounded-t-3xl md:rounded-2xl max-w-lg w-full max-h-[90%] overflow-auto card-shadow slide-up"><button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition z-10">
+    <div class="modal-backdrop absolute inset-0" onclick="window.closeModal()"></div>
+    <div class="relative bg-white rounded-t-3xl md:rounded-2xl max-w-lg w-full max-h-[90%] overflow-auto card-shadow slide-up"><button onclick="window.closeModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition z-10">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg></button>
      <div id="modal-content"><!-- Modal content will be inserted here -->
@@ -148,7 +148,8 @@
     </div>
    </div>
   </div>
-  <script>
+  <script type="module">
+    import {data} from './data.js';
     const defaultConfig = {
       brand_name: "MementoPH",
       tagline: "Gifts that hold memories",
@@ -157,20 +158,107 @@
       secondary_color: "oklch(0.5200 0.0450 125.00)"
     };
 
-    const catalogData = await fetch('data.json').then(response => response.json());
+    const catalogData = data;
 
-    const products = catalogData.products.map((product, index) => ({
+    const products = catalogData.products.map((products, index) => ({
       id: index + 1,
-      title: product.name,
-      price: `₱${product.price}`,
-      categories: product.category,
-      image: product.imgUrls[0],
-      items: product.items,
-      description: product.description
+      title: products.name,
+      price: `₱${products.price}`,
+      categories: products.category,
+      image: products.imgUrls[0],
+      items: products.items,
+      description: products.description
     }));
 
     let currentCategory = 'all';
     let selectedProduct = null;
+
+    window.openProductDetail = function(productId) {
+      selectedProduct = products.find(p => p.id === productId);
+      if (!selectedProduct) return;
+      
+      const modal = document.getElementById('product-modal');
+      const modalContent = document.getElementById('modal-content');
+      
+      // Get item details for the bundle
+      const itemDetails = selectedProduct.items.map(itemCode => {
+        const item = catalogData.items.find(i => i.itemCode === itemCode);
+        return item ? item.name : itemCode;
+      });
+      
+      modalContent.innerHTML = `
+        <div class="aspect-square bg-gray-100 overflow-hidden">
+          <img src="${selectedProduct.image}" alt="${selectedProduct.title}" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='var(--elevation-3)'; this.alt='Image unavailable';">
+        </div>
+        <div class="p-6">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex-1">
+              <h2 class="text-2xl font-bold mb-2">${selectedProduct.title}</h2>
+              <div class="flex flex-wrap gap-1 mb-2">
+                ${selectedProduct.categories.map(cat => `
+                  <span class="inline-block px-3 py-1 text-xs rounded-full" style="background: var(--elevation-3); color: var(--secondary-bg);">
+                    ${cat}
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+            <div class="text-right ml-4">
+              <p class="text-3xl font-bold" style="color: var(--primary-bg);">${selectedProduct.price}</p>
+            </div>
+          </div>
+          
+          ${itemDetails.length > 0 ? `
+            <div class="mb-4 p-3 rounded-lg" style="background: var(--elevation-3);">
+              <h3 class="text-sm font-semibold text-gray-600 mb-2">Bundle Includes:</h3>
+              <ul class="space-y-1">
+                ${itemDetails.map(item => `
+                  <li class="text-sm text-gray-700 flex items-start">
+                    <span class="mr-2">•</span>
+                    <span>${item}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+          
+          <p class="text-gray-600 leading-relaxed mb-6">${selectedProduct.description}</p>
+          <div class="flex gap-3">
+            <button onclick="window.handleInquiry()" class="flex-1 py-3 px-6 rounded-lg font-semibold text-white transition card-shadow-hover" style="background: var(--primary-bg);">
+              Inquire Now
+            </button>
+            <button onclick="window.closeModal()" class="px-6 py-3 rounded-lg font-semibold transition" style="background: var(--elevation-3); color: var(--secondary-bg);">
+              Close
+            </button>
+          </div>
+        </div>
+      `;
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('fade-in');
+    };
+
+    window.closeModal = function() {
+      const modal = document.getElementById('product-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('fade-in');
+      selectedProduct = null;
+    };
+
+    window.handleInquiry = function() {
+      const message = document.createElement('div');
+      message.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full text-white font-medium z-50 slide-up';
+      message.style.background = 'var(--success)';
+      message.textContent = `Inquiry sent for ${selectedProduct.title}! We'll contact you soon.`;
+      document.body.appendChild(message);
+      
+      setTimeout(() => {
+        message.style.opacity = '0';
+        message.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => message.remove(), 300);
+      }, 3000);
+      
+      window.closeModal();
+    };
 
     async function onConfigChange(config) {
       document.getElementById('brand-name').textContent = config.brand_name || defaultConfig.brand_name;
@@ -190,7 +278,7 @@
         : products.filter(p => p.categories.includes(currentCategory));
       
       grid.innerHTML = filteredProducts.map(product => `
-        <div class="bg-white rounded-2xl card-shadow card-shadow-hover overflow-hidden cursor-pointer" onclick="openProductDetail(${product.id})">
+        <div class="bg-white rounded-2xl card-shadow card-shadow-hover overflow-hidden cursor-pointer" onclick="window.openProductDetail(${product.id})">
           <div class="aspect-square bg-gray-100 overflow-hidden">
             <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='var(--elevation-3)'; this.alt='Image unavailable';">
           </div>
