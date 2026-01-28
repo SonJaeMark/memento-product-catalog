@@ -116,7 +116,7 @@
    <section class="px-4 py-6 bg-white card-shadow">
     <div class="max-w-4xl mx-auto">
      <h3 class="text-sm font-semibold text-gray-500 mb-3 uppercase tracking-wide">Categories</h3>
-     <div id="category-filters" class="flex gap-2 flex-wrap"><button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="all"> All Products </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="flowers"> Flowers </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="bundles"> Bundles </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="letters"> Letters </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="personalized"> Personalized </button>
+     <div id="category-filters" class="flex gap-2 flex-wrap"><button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="all"> All Products </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="for her"> For Her </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="for him"> For Him </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="for mom"> For Mom </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="for dad"> For Dad </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="for besties"> For Besties </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="bundles"> Bundles </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="flowers"> Flowers </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="chocolate"> Chocolate </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="music"> Music </button> <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white" data-category="personalize"> Personalize </button>
      </div>
     </div>
    </section><!-- Product Grid -->
@@ -157,72 +157,17 @@
       secondary_color: "oklch(0.5200 0.0450 125.00)"
     };
 
-    const products = [
-      {
-        id: 1,
-        title: "Rose Bouquet Deluxe",
-        price: "₱1,299",
-        category: "flowers",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23fef3f3' width='400' height='400'/%3E%3Ccircle cx='200' cy='180' r='60' fill='%23ff6b9d'/%3E%3Ccircle cx='160' cy='160' r='45' fill='%23ff5a8d'/%3E%3Ccircle cx='240' cy='160' r='45' fill='%23ff5a8d'/%3E%3Ccircle cx='200' cy='140' r='50' fill='%23ff8fb3'/%3E%3Cpath d='M200 220 Q200 280 200 350' stroke='%2345b08c' stroke-width='8' fill='none'/%3E%3Cellipse cx='180' cy='260' rx='20' ry='30' fill='%2356d4a8'/%3E%3Cellipse cx='220' cy='280' rx='18' ry='28' fill='%2356d4a8'/%3E%3C/svg%3E",
-        description: "A stunning arrangement of 12 premium red roses, beautifully wrapped and perfect for expressing deep love and admiration."
-      },
-      {
-        id: 2,
-        title: "Anniversary Gift Bundle",
-        price: "₱2,499",
-        category: "bundles",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23fff5eb' width='400' height='400'/%3E%3Crect x='100' y='150' width='200' height='180' rx='10' fill='%23ffd4a3'/%3E%3Crect x='120' y='130' width='160' height='40' rx='20' fill='%23ff9a5c'/%3E%3Cpath d='M200 130 Q200 100 180 100 Q160 100 160 120' stroke='%23ff6b35' stroke-width='4' fill='none'/%3E%3Cpath d='M200 130 Q200 100 220 100 Q240 100 240 120' stroke='%23ff6b35' stroke-width='4' fill='none'/%3E%3Ccircle cx='150' cy='200' r='15' fill='%23ff5a8d'/%3E%3Crect x='180' y='220' width='100' height='15' rx='7' fill='%23845ec2'/%3E%3C/svg%3E",
-        description: "Complete celebration package with flowers, chocolates, a handwritten card, and a keepsake photo frame."
-      },
-      {
-        id: 3,
-        title: "Love Letter in a Bottle",
-        price: "₱899",
-        category: "letters",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23f0f7ff' width='400' height='400'/%3E%3Crect x='130' y='100' width='140' height='220' rx='15' fill='%23e3f2ff' opacity='0.6'/%3E%3Crect x='135' y='105' width='130' height='210' rx='12' fill='%23cce7ff' opacity='0.4'/%3E%3Ccircle cx='200' cy='80' r='25' fill='%23a8daff'/%3E%3Crect x='150' y='130' width='100' height='80' rx='5' fill='%23fff5f5'/%3E%3Cpath d='M160 145 L240 145 M160 160 L240 160 M160 175 L220 175' stroke='%23ff6b9d' stroke-width='2'/%3E%3Cpath d='M190 200 Q200 210 210 200' stroke='%23ff5a8d' stroke-width='3' fill='none'/%3E%3C/svg%3E",
-        description: "Your heartfelt message beautifully handwritten and sealed in an elegant glass bottle with decorative elements."
-      },
-      {
-        id: 4,
-        title: "Custom Name Tumbler",
-        price: "₱599",
-        category: "personalized",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23fef5ff' width='400' height='400'/%3E%3Crect x='140' y='120' width='120' height='200' rx='8' fill='%23e8d5f2'/%3E%3Crect x='135' y='115' width='130' height='10' rx='5' fill='%23d4b5e8'/%3E%3Crect x='145' y='160' width='110' height='40' rx='5' fill='%23fff' opacity='0.3'/%3E%3Ctext x='200' y='185' font-family='Arial' font-size='20' font-weight='bold' text-anchor='middle' fill='%23845ec2'%3ENAME%3C/text%3E%3Ccircle cx='180' cy='240' r='8' fill='%23ff9a5c'/%3E%3Ccircle cx='220' cy='250' r='6' fill='%23ffd4a3'/%3E%3C/svg%3E",
-        description: "Premium stainless steel tumbler personalized with your chosen name, design, and message. Perfect for daily use."
-      },
-      {
-        id: 5,
-        title: "Sunflower Surprise Box",
-        price: "₱1,099",
-        category: "flowers",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23fffef5' width='400' height='400'/%3E%3Ccircle cx='200' cy='180' r='35' fill='%23734b0a'/%3E%3Ccircle cx='200' cy='180' r='50' fill='%23ffd93d' opacity='0.8'/%3E%3Cellipse cx='200' cy='130' rx='15' ry='35' fill='%23ffd93d'/%3E%3Cellipse cx='250' cy='180' rx='35' ry='15' fill='%23ffd93d'/%3E%3Cellipse cx='200' cy='230' rx='15' ry='35' fill='%23ffd93d'/%3E%3Cellipse cx='150' cy='180' rx='35' ry='15' fill='%23ffd93d'/%3E%3Cellipse cx='165' cy='145' rx='25' ry='25' fill='%23ffd93d' transform='rotate(-45 165 145)'/%3E%3Cellipse cx='235' cy='145' rx='25' ry='25' fill='%23ffd93d' transform='rotate(45 235 145)'/%3E%3Cpath d='M200 215 L200 320' stroke='%2345b08c' stroke-width='6' fill='none'/%3E%3C/svg%3E",
-        description: "Bright and cheerful sunflowers in a keepsake box, bringing sunshine and positivity to any occasion."
-      },
-      {
-        id: 6,
-        title: "Celebration Bundle",
-        price: "₱1,799",
-        category: "bundles",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23fff8f0' width='400' height='400'/%3E%3Ccircle cx='200' cy='200' r='80' fill='%23ffb84d' opacity='0.3'/%3E%3Ccircle cx='180' cy='180' r='25' fill='%23ff6b9d'/%3E%3Ccircle cx='220' cy='180' r='25' fill='%23845ec2'/%3E%3Ccircle cx='200' cy='220' r='25' fill='%2356d4a8'/%3E%3Cpolygon points='200,120 210,150 240,155 215,175 222,205 200,190 178,205 185,175 160,155 190,150' fill='%23ffd93d'/%3E%3Ctext x='200' y='290' font-family='Arial' font-size='24' font-weight='bold' text-anchor='middle' fill='%23ff9a5c'%3ECELEBRATE%3C/text%3E%3C/svg%3E",
-        description: "Ultimate celebration package with balloons, confetti, personalized banner, and sweet treats to make any day special."
-      },
-      {
-        id: 7,
-        title: "Handwritten Poetry Card",
-        price: "₱499",
-        category: "letters",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23fef5f9' width='400' height='400'/%3E%3Crect x='100' y='120' width='200' height='180' rx='5' fill='%23fff'/%3E%3Crect x='95' y='115' width='210' height='190' rx='5' fill='none' stroke='%23ff6b9d' stroke-width='2'/%3E%3Cpath d='M130 150 Q200 160 270 150' stroke='%23ff5a8d' stroke-width='2' fill='none'/%3E%3Cpath d='M130 170 Q200 180 270 170' stroke='%23ff8fb3' stroke-width='2' fill='none'/%3E%3Cpath d='M130 190 Q200 200 270 190' stroke='%23ffb3d1' stroke-width='2' fill='none'/%3E%3Cpath d='M130 210 Q170 215 210 210' stroke='%23ffc7e0' stroke-width='2' fill='none'/%3E%3Cpath d='M270 250 Q280 260 270 270' stroke='%23ff5a8d' stroke-width='2' fill='%23ff6b9d'/%3E%3C/svg%3E",
-        description: "Beautiful custom poetry or love letter handwritten in elegant calligraphy on premium cardstock with envelope."
-      },
-      {
-        id: 8,
-        title: "Engraved Couple Keychain",
-        price: "₱749",
-        category: "personalized",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23f5f0ff' width='400' height='400'/%3E%3Ccircle cx='160' cy='200' r='40' fill='%23e8d5f2'/%3E%3Cpath d='M160 160 Q145 175 145 195 Q145 215 160 230 Q175 215 175 195 Q175 175 160 160 Z' fill='%23ff6b9d'/%3E%3Ccircle cx='240' cy='200' r='40' fill='%23d4b5e8'/%3E%3Cpath d='M240 160 Q225 175 225 195 Q225 215 240 230 Q255 215 255 195 Q255 175 240 160 Z' fill='%23845ec2'/%3E%3Cline x1='160' y1='240' x2='160' y2='280' stroke='%23a8daff' stroke-width='4'/%3E%3Cline x1='240' y1='240' x2='240' y2='280' stroke='%23a8daff' stroke-width='4'/%3E%3Ccircle cx='160' cy='285' r='8' fill='%23a8daff'/%3E%3Ccircle cx='240' cy='285' r='8' fill='%23a8daff'/%3E%3C/svg%3E",
-        description: "Matching heart-shaped keychains engraved with your initials and special date. A perfect symbol of your bond."
-      }
-    ];
+    const catalogData = await fetch('data.json').then(response => response.json());
+
+    const products = catalogData.products.map((product, index) => ({
+      id: index + 1,
+      title: product.name,
+      price: `₱${product.price}`,
+      categories: product.category,
+      image: product.imgUrls[0],
+      items: product.items,
+      description: product.description
+    }));
 
     let currentCategory = 'all';
     let selectedProduct = null;
@@ -242,7 +187,7 @@
       const grid = document.getElementById('product-grid');
       const filteredProducts = currentCategory === 'all' 
         ? products 
-        : products.filter(p => p.category === currentCategory);
+        : products.filter(p => p.categories.includes(currentCategory));
       
       grid.innerHTML = filteredProducts.map(product => `
         <div class="bg-white rounded-2xl card-shadow card-shadow-hover overflow-hidden cursor-pointer" onclick="openProductDetail(${product.id})">
@@ -252,9 +197,14 @@
           <div class="p-3">
             <h3 class="font-semibold text-sm mb-1 line-clamp-2">${product.title}</h3>
             <p class="text-lg font-bold" style="color: var(--primary-bg);">${product.price}</p>
-            <span class="inline-block mt-2 px-2 py-1 text-xs rounded-full" style="background: var(--elevation-3); color: var(--secondary-bg);">
-              ${product.category}
-            </span>
+            <div class="flex flex-wrap gap-1 mt-2">
+              ${product.categories.slice(0, 2).map(cat => `
+                <span class="inline-block px-2 py-1 text-xs rounded-full" style="background: var(--elevation-3); color: var(--secondary-bg);">
+                  ${cat}
+                </span>
+              `).join('')}
+              ${product.categories.length > 2 ? `<span class="inline-block px-2 py-1 text-xs rounded-full" style="background: var(--elevation-3); color: var(--secondary-bg);">+${product.categories.length - 2}</span>` : ''}
+            </div>
           </div>
         </div>
       `).join('');
@@ -267,6 +217,12 @@
       const modal = document.getElementById('product-modal');
       const modalContent = document.getElementById('modal-content');
       
+      // Get item details for the bundle
+      const itemDetails = selectedProduct.items.map(itemCode => {
+        const item = catalogData.items.find(i => i.itemCode === itemCode);
+        return item ? item.name : itemCode;
+      });
+      
       modalContent.innerHTML = `
         <div class="aspect-square bg-gray-100 overflow-hidden">
           <img src="${selectedProduct.image}" alt="${selectedProduct.title}" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='var(--elevation-3)'; this.alt='Image unavailable';">
@@ -274,15 +230,34 @@
         <div class="p-6">
           <div class="flex items-start justify-between mb-3">
             <div class="flex-1">
-              <h2 class="text-2xl font-bold mb-1">${selectedProduct.title}</h2>
-              <span class="inline-block px-3 py-1 text-xs rounded-full" style="background: var(--elevation-3); color: var(--secondary-bg);">
-                ${selectedProduct.category}
-              </span>
+              <h2 class="text-2xl font-bold mb-2">${selectedProduct.title}</h2>
+              <div class="flex flex-wrap gap-1 mb-2">
+                ${selectedProduct.categories.map(cat => `
+                  <span class="inline-block px-3 py-1 text-xs rounded-full" style="background: var(--elevation-3); color: var(--secondary-bg);">
+                    ${cat}
+                  </span>
+                `).join('')}
+              </div>
             </div>
-            <div class="text-right">
+            <div class="text-right ml-4">
               <p class="text-3xl font-bold" style="color: var(--primary-bg);">${selectedProduct.price}</p>
             </div>
           </div>
+          
+          ${itemDetails.length > 0 ? `
+            <div class="mb-4 p-3 rounded-lg" style="background: var(--elevation-3);">
+              <h3 class="text-sm font-semibold text-gray-600 mb-2">Bundle Includes:</h3>
+              <ul class="space-y-1">
+                ${itemDetails.map(item => `
+                  <li class="text-sm text-gray-700 flex items-start">
+                    <span class="mr-2">•</span>
+                    <span>${item}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+          
           <p class="text-gray-600 leading-relaxed mb-6">${selectedProduct.description}</p>
           <div class="flex gap-3">
             <button onclick="handleInquiry()" class="flex-1 py-3 px-6 rounded-lg font-semibold text-white transition card-shadow-hover" style="background: var(--primary-bg);">
@@ -366,5 +341,5 @@
 
     renderProducts();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c4ee2fed65cbc4b',t:'MTc2OTU4NjQ5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c4f586e75a4bc4b',t:'MTc2OTU5MTMwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
